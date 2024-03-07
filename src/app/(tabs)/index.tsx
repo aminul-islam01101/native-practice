@@ -1,27 +1,34 @@
-import { StyleSheet } from 'react-native';
+import products from '@assets/data/products';
+import { FlatList, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '@/src/components/EditScreenInfo';
-import { Text, View } from '@/src/components/Themed';
+import ProductListItem from '@/components/ProductListItem';
 
-export default function TabOneScreen() {
+export default function MenuScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One new</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
+    <FlatList
+      data={products}
+      renderItem={({ item }) => <ProductListItem product={item} />}
+      numColumns={2}
+      contentContainerStyle={{ gap: 10, padding: 10 }}
+      columnWrapperStyle={{ gap: 10 }}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 20,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  price: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'green',
   },
   separator: {
     marginVertical: 30,
