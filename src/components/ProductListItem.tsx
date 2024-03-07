@@ -1,4 +1,5 @@
 import Colors from '@constants/Colors';
+import { Link } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text } from 'react-native';
 
 import { Product } from '@/types';
@@ -12,12 +13,14 @@ type ProductListItemProps = {
 
 const ProductListItem = ({ product }: ProductListItemProps) => {
   return (
-    <Pressable style={styles.container}>
-      <Image source={{ uri: product.image || defaultPizzaImage }} style={styles.image} />
+    <Link href={`/menu/${product.id}`} asChild>
+      <Pressable style={styles.container}>
+        <Image source={{ uri: product.image || defaultPizzaImage }} style={styles.image} />
 
-      <Text style={styles.title}>{product.name}</Text>
-      <Text style={styles.price}>${product.price}</Text>
-    </Pressable>
+        <Text style={styles.title}>{product.name}</Text>
+        <Text style={styles.price}>${product.price}</Text>
+      </Pressable>
+    </Link>
   );
 };
 
